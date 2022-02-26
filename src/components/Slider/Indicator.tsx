@@ -6,8 +6,8 @@ const Indicator = ({ currentSlide, amountSlides, nextSlide }: IIndicator) => {
     <IndicatorWrapper className="flex absolute justify-center w-full bottom-0">
       {Array(amountSlides)
         .fill(1)
-        .map((_, i) => (
-          <Dot key={i} isActive={currentSlide === i} onClick={() => nextSlide(i)} />
+        .map((_, index) => (
+          <Dot key={index} isActive={currentSlide === index} onClick={() => nextSlide(index)} />
         ))}
       <span className="text-white">
         {currentSlide + 1} de {amountSlides}

@@ -21,7 +21,7 @@ const Slider = ({ images, autoPlay = true, autoPlayTime = 3000, children }: ISli
       ))}
       <Gradient />
       <Indicator currentSlide={currentSlide} amountSlides={images.length} nextSlide={nextSlide} />
-      <ChildrenWrapper>{children}</ChildrenWrapper>
+      <ChildrenWrapper></ChildrenWrapper>
     </Wrapper>
   );
 };
