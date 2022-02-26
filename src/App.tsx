@@ -8,7 +8,7 @@ function App() {
   const { notes, isLoading } = useCollection({ collectionName: 'sliderImages' });
   console.log('notes', notes);
   console.log('isLoading', isLoading);
-  return <div className="App">{isLoading ? <div>CARGANDO</div> : <Slider images={notes}></Slider>}</div>;
+  return <div className="App">{isLoading ? <div>CARGANDO</div> : <Slider images={notes} autoPlay={false}></Slider>}</div>;
 }
 
 export default App;

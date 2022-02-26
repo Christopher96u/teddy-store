@@ -6,7 +6,8 @@ import ChildrenWrapper from '@components/Slider/ChildrenWrapper';
 import ISlider from '@interfaces/Slider/Slider.interface';
 import useSlider from '@hooks/useSlider';
 const Slider = ({ images, autoPlay = true, autoPlayTime = 3000, children }: ISlider) => {
-  const { currentSlide, nextSlide } = useSlider({ images, autoPlayTime });
+  console.log('autoPlay form prop ', autoPlay);
+  const { currentSlide, nextSlide } = useSlider({ images, autoPlayTime, autoPlay });
   return (
     <Wrapper>
       {images.map((img, index) => (
