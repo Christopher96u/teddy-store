@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import Slider from '@components/Slider/Slider';
 import useCollection from '@hooks/useCollection';
-
 function App() {
   const { notes, isLoading } = useCollection({ collectionName: 'sliderImages' });
   console.log('notes', notes);
