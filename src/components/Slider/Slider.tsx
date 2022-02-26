@@ -1,5 +1,28 @@
-import styles from './Slider.module.css';
-const Slider = () => {
-  return <div className={`text-6xl text-gray-400 ${styles.example}`}>Soy un slider</div>;
+import Indicator from '@components/Slider/Indicator';
+import Wrapper from '@components/Slider/Wrapper';
+import Slide from '@components/Slider/Slide';
+import Gradient from '@components/Slider/Gradient';
+import ChildrenWrapper from '@components/Slider/ChildrenWrapper';
+import ISlider from '@interfaces/Slider/Slider.interface';
+import useSlider from '@hooks/useSlider';
+const Slider = ({ images, autoPlay = true, autoPlayTime = 3000, children }: ISlider) => {
+  const { currentSlide, nextSlide } = useSlider({ images, autoPlayTime });
+  return (
+    <Wrapper>
+      {images.map((img, index) => (
+        <Slide
+          key={index}
+          style={{
+            backgroundImage: `url(${img.url})`,
+            marginLeft: index === 0 ? `-${currentSlide * 100}%` : '',
+          }}
+        ></Slide>
+      ))}
+      <Gradient />
+      <Indicator currentSlide={currentSlide} amountSlides={images.length} nextSlide={nextSlide} />
+      <ChildrenWrapper>{children}</ChildrenWrapper>
+    </Wrapper>
+  );
 };
+
 export default Slider;
