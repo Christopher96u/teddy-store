@@ -1,7 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
-console.log('apikey', process.env);
+import type { CollectionReference } from 'firebase/firestore';
+import { getFirestore, collection } from 'firebase/firestore';
+//import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+
 const FIREBASE_CONFIG = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -12,8 +13,8 @@ const FIREBASE_CONFIG = {
 };
 
 const app = initializeApp(FIREBASE_CONFIG);
-console.log(app);
 export const db = getFirestore(app);
+export const createCollection = <T>(collectionName: string) => collection(db, collectionName) as CollectionReference<T>;
 /* export const auth = getAuth();
 export const provider = new GoogleAuthProvider(); */
 /* provider.setCustomParameters({ prompt: 'select_account' }); */

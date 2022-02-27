@@ -1,19 +1,19 @@
-import  IImage  from '@interfaces/Slider/Image.interface';
 import { useEffect, useState } from 'react';
-import { db } from '@utils/firebase/firestore';
-import { collection, DocumentData, getDocs } from 'firebase/firestore';
+import { getDocs } from 'firebase/firestore';
+import { createCollection } from '@utils/firebase/firestore';
 interface IUseCollection {
   collectionName: string;
 }
-const useCollection = ({ collectionName }: IUseCollection) => {
-  const [notes, setNotes] = useState<DocumentData[]>([]);
+// TODO! REFACTOR useCollection
+const useCollection = <T>({ collectionName }: IUseCollection) => {
+  const [data, setData] = useState<T[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const notesSnapshot = async () => {
     try {
-      const fetchDocs = await getDocs(collection(db, collectionName));
+      const fetchDocs = await getDocs<T>(createCollection(collectionName));
       console.log('Response from Firebase', fetchDocs);
-      const response = fetchDocs.docs.map((doc) => doc.data());
-      setNotes(response);
+      const response = fetchDocs.docs.map<T>((doc) => doc.data());
+      setData(response);
     } catch (error) {
       console.log(error);
     }
@@ -27,6 +27,6 @@ const useCollection = ({ collectionName }: IUseCollection) => {
     };
     void fetchCollection();
   }, []);
-  return { notes, isLoading };
+  return { data, isLoading };
 };
 export default useCollection;

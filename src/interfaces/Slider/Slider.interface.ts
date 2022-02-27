@@ -5,7 +5,7 @@ interface IImage {
   name: string;
 }
 interface ISlider {
-  images: IImage[] | [] | DocumentData[] ;
+  images: IImage[];
   autoPlay?: boolean;
   autoPlayTime?: number;
   children?: ReactNode;
